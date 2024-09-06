@@ -1,0 +1,561 @@
+create database CharityMS;
+create table Donors
+(
+  Donor_id   int         primary key,
+  First_name varchar(20) not null,
+  Last_name  varchar(30) not null,
+  Donor_email varchar(50) not null,
+  Mobileno varchar(10)  not null,
+  Donor_age int not null check(donor_age<=100),
+  Donor_address varchar(20) not null,
+  Gender char(1) not null check(gender='F' or gender='M'),
+  
+)
+
+insert into Donors values(101,'Gaddam','Aswini','gaddamaswini142@gmail.com','9618534142',20,'Kurnool','F');
+insert into Donors values(109,'Gaddam','Hima','himateja961@gmail.com','9492460258',19,'Kadapa','F');
+insert into Donors values(1010,'Gangula','Mani','manikanta456@gmail.com','9491944548',25,'Tirupati','M');
+insert into Donors values(103,'Bhumireddy','Chandu','chandureddy2302@gmail.com','9398339406',30,'Madanpalli','M');
+insert into Donors values(102,'Dara','Harini','hariniramana01@gmail.com','9390341441',40,'Kurnool','F');
+insert into Donors values(1021,'Chatrapati','Ganesh','ganeshram563@gmail.com','9891843741',50,'Chittoor','M');
+insert into Donors values(108,'Singa','Harsha','harsha90@gmail.com','9291341456',30,'Mumbai','M');
+insert into Donors values(298,'Dudekula','Naveen','naveenchandra0123@gmail.com','6590348750',35,'Kurnool','M');
+insert into Donors values(452,'Bhuma','Abhi','abhi9390@gmail.com','9848540740',30,'Anantapur','M');
+insert into Donors values(1023,'Ediga','Sudheer','esudheer12@gmail.com',7989247215,25,'Tadipatri','M');
+insert into Donors values(1025,'Kakarla','Pranay','pranay112@gmail.com',9635586571,29,'Bethamcherla','M');
+insert into Donors values(1026,'Gera','Rahul','rahul123@gmail.com',9474055775,21,'Koilakuntla','M');
+insert into Donors values(1027,'Eega','Nani','naniii0@gmail.com',9232687509,28,'Banaganepalle','M');
+insert into Donors values(1028,'Pothineni','Ram','ram4562@gmail.com',8972193052,22,'Proddatur','M');
+insert into Donors values(1029,'Gattamaneni','Sitara','sitara66@gmail.com',9732157880,27,'Kadapa','F');
+insert into Donors values(1030,'Allu','Aayan','aayan999@gmail.com',9732119608,23,'Ontimitta','M');
+insert into Donors values(1031,'Ganne','Rakshitha','rakshitha@gmail.com',9609514553,26,'Rangampeta','F');
+insert into Donors values(1032,'Radhe','Shusmanth','shusmanth777@gmail.com',8145627697,24,'Rajempeta','M');
+insert into Donors values(1033,'Kandu','Sushma','sushma33@gmail.com',9002622754,25,'Nandalur','F');
+insert into Donors values(1034,'Yaganti','Praveen','praveen22@gmail.com',9475415588,30,'Tirupati','M');
+insert into Donors values(1035,'Megoti','Parvathi','parvathi0@gmail.com',9153617400,32,'Hindupur','F');
+insert into Donors values(1036,'Aanand','Akhila','akhila00@gmail.com',9475415588,38,'Banglore','F');
+insert into Donors values(1037,'Kannu','Krishna','krishna@gmail.com',9153617400,40,'Nandyal','M');
+insert into Donors values(1038,'Kakarla','kaveri','kaveri10@gmail.com',9433416956,36,'Godavari','F');
+insert into Donors values(1039,'Prabu','Samantha','samantha1@gmail.com',9474985051,31,'Kakinada','F');
+insert into Donors values(1040,'Akkineni','Akhil','Akhil12233@gmail.com',8046151300,33,'Guntur','M');
+insert into Donors values(1041,'Manchu','Mohan','mohan111@gmail.com',8130227245,37,'Ananthapur','M');
+insert into Donors values(1042,'Maalini','Mallika','mallika66@gmail.com',9899944310,34,'Prakasam','F');
+insert into Donors values(1043,'Chittepu','Divya','divya222@gmail.com',9815863605,36,'Chittor','F');
+insert into Donors values(1044,'Raahu','Vishnu','vishnu462@gmail.com',9205464773,39,'Eluru','M');
+select * from Donors;
+
+create table Donations
+(
+  Donation_id    int   primary key,
+  Donor_id       int   not null foreign key references Donors(Donor_id),
+  Donor_name     varchar(50) not null,
+  Amount         money not null,
+  Donation_date  date  not null,
+  Payment_method varchar(50)  not null check(Payment_method='Debit card'or Payment_method='Credit card'or Payment_method='Net Banking'or Payment_method='UPI'),
+  Transaction_id int   not null,
+)
+insert into Donations values(2011, 1010, 'Mani',200000,'2022-03-19','Credit card',20211345);
+insert into Donations values(2020, 1021, 'Ganesh',500000,'2023-05-20','Net Banking',34075156);
+insert into Donations values(2045, 452,  'Abhi',700000,'2022-01-23','Debit card',65734521);
+insert into Donations values(2023, 109, 'Hima',750000,'2023-03-13','Credit card',70734587);
+insert into Donations values(2070, 108, 'Harsha',100000,'2022-11-03','UPI',7654321);
+insert into Donations values(2349, 298, 'Naveen',620000,'2021-12-30',' Net Banking',90874532);
+insert into Donations values(2211, 103, 'Chandu',70000,'2022-09-29','Debit card',10984891);
+insert into Donations values(2987, 101, 'Aswini',670000,'2023-07-09','Credit card',23434585);
+insert into Donations values(2991, 1023, 'Sudheer', 150000, '2023-07-12', 'Credit card', 23434589);
+insert into Donations values(2990, 1025, 'Pranay', 1000000, '2023-06-30', 'Credit card', 23434588);
+insert into Donations values(2992, 1026, 'Rahul', 75000, '2023-07-05', 'Debit card', 23434590);
+insert into Donations values(2993, 1027, 'Nani', 400000, '2023-06-28', 'Credit card', 23434591);
+insert into Donations values(2994, 1028, 'Ram', 200000, '2023-07-18', 'Net Banking', 23434592);
+insert into Donations values(2995, 1029, 'Sitara', 300000, '2023-07-14', 'Credit card', 23434593);
+insert into Donations values(2996, 1030, 'Aayan', 100000, '2023-06-25', 'Credit card', 23434594);
+insert into Donations values(2997, 1031, 'Rakshitha', 50000, '2023-07-03', 'Debit card', 23434595);
+insert into Donations values(2998, 1032, 'Shusmanth', 150000, '2023-07-09', 'Net Banking', 23434596);
+insert into Donations values(2999, 1033, 'Sushma', 900000, '2023-06-26', 'UPI', 23434597);
+insert into Donations values(3000, 1034, 'Praveen', 120000, '2023-07-17', 'Credit card', 23434598);
+insert into Donations values(3001, 1035, 'Parvathi', 250000, '2023-07-11', 'UPI', 23434599);
+insert into Donations values(3002, 1036, 'Akhila', 350000, '2023-06-29', 'Credit card', 23434600);
+insert into Donations values(3003, 1037, 'Krishna', 80000, '2023-07-06', 'Net Banking', 23434601);
+insert into Donations values(3004, 1038, 'kaveri', 180000, '2023-07-13', 'Credit card', 23434602);
+insert into Donations values(3005, 1039, 'Samantha', 150000, '2023-06-27', 'Credit card', 23434603);
+insert into Donations values(3006, 1040, 'Akhil', 95000, '2023-07-04', 'Debit card', 23434604);
+insert into Donations values(3007, 1041, 'Mohan', 400000, '2023-07-08', 'Net Banking', 23434605);
+insert into Donations values(3008, 1042, 'Mallika', 220000, '2023-06-24', 'Credit card', 23434606);
+insert into Donations values(3009, 1043, 'Divya', 110000, '2023-07-16', 'Credit card', 23434607);
+insert into Donations values(3010, 1044, 'Vishnu', 175000, '2023-07-10', 'UPI', 23434608);
+select * from Donations;
+
+create table Project
+(
+  Project_id int primary key,
+  Project_name varchar(50)  not null,
+  Amount_spent money not null,
+  location varchar(30) not null,
+  Estimated_people int not null,
+)
+  insert into Project values(5011,'Food Donation',30000,'Kadapa',1000);
+  insert into Project values(6121,'Distributing books',50000,'Kurnool',2000);
+  insert into Project values(7201,'Providing clothes',100000,'Tirupati',3000);
+  insert into Project values(9078,'Education for All',150000,'Chittoor',2500);
+  insert into Project values(4562,'Healthcare Outreach',500000,'Anantapur',4500);
+  insert into Project values(7645,'Food Security Program',75000,'Khammam',4000);
+  insert into Project values(9082,'Empowerment Workshops',100000,'Nellore',1000);
+  insert into Project values(1237,'Elderly Care Services',50000,'Kurnool',3100);
+  insert into Project values(3490,'Disaster Relief Efforts',60000,'Kadapa',1200);
+  insert into Project values(3410,'Rural Developmental Project',75000,'Nizamabad',1500);
+  insert into Project values(9089,'Public Safety Enhancement Initiative',65000,'Tirupati',2500);
+  insert into Project values(1236,'Arts and Music Education Program',30000,'Kurnool',1200);
+  insert into Project values(4571,'Sustainable Agriculture and Food Security Program',75000,'Khammam',4000);
+  insert into Project values(7212,'Renewable Energy Expansion Project',50000,'Hyderabad',2000);
+  insert into Project values(5063,'KindHeart: Efficient Charity Operations',80000,'Srikakulam',5000);
+  insert into Project values(9083,'GiveHope: Inspiring Positive Change',25000,'Vijayawada',4000);
+  insert into Project values(3491,'CommunityCare: Holistic Charity Management',45000,'Chittoor',3500);
+  insert into Project values(6123,'GiveReach: Efficient Donor Engagement',75000,'Khammam',2000);
+  insert into Project values(9618,'HeartLink: Connecting Donors with Causes',50000,'Kurnool',3500);
+  insert into Project values(5341,'Backpacks for Education',35000,'Karimnagar',4000);
+  insert into Project values(4290,'Sponsor a Child Education',75000,'Hyderabad',2500);
+  insert into Project values(9491,'Community Garden',40000,'Anantapur',5500);
+  insert into Project values(9445,'Literacy Workshops',25000,'Kanchi',15000);
+  insert into Project values(4898,'Scholarships for Underprivileged Students',200000,'Nellore',2500);
+  insert into Project values(9848,'School Supply Drive',45000,'Tirupati',3500);
+  insert into Project values(5407,'Computer Literacy Program',35000,'Vizag',2000);
+  insert into Project values(4563, 'Education Initiative', 50000, 'Banglore', 1000);
+  insert into Project values(4564, 'Healthcare Outreach', 75000, 'Chennai', 2000);
+  insert into Project values(4565, 'Environmental Conservation', 30000, 'Hyderabad', 500);
+  insert into Project values(4566, 'Community Development', 40000, 'Nizamabad', 1500);
+  insert into Project values(4567, 'Youth Empowerment Program', 60000, 'Srikakulam', 1200);
+  insert into Project values(4568, 'Elderly Care Services', 35000, 'Vijayanagaram', 1400);
+  insert into Project values(4569, 'Women Empowerment Initiative', 45000, 'Kurnool', 1500);
+  insert into Project values(4570, 'Disaster Relief Project', 80000, 'Tirupati', 1540);
+  insert into Project values(4571, 'Animal Welfare Campaign', 25000, 'Tirupati', 400);
+  select * from Project;
+
+create table Coordinator
+(
+  Coordinator_id int primary key,
+  Coordinator_name varchar(50) not null,
+  Project_id int not null foreign key references Project(project_id),
+  Mobile_no varchar(10) not null,
+  Email_id varchar(50) not null,
+  Age  int not null check(Age>=22 and Age<=50),
+  Gender varchar(1) not null check(Gender='F' or Gender='M'),
+  Address varchar(100) not null,
+)
+insert into Coordinator (Coordinator_id, Coordinator_name, Project_id, Mobile_no, Email_id, Age, Gender, Address) 
+values
+(411, 'Shivakumar', 5011, '9234567890', 'shivakumar09@gmail.com', 30, 'M', '123 Main Street, City'),
+(412, 'Priyadarshini', 6121, '9876543210', 'priya23@gmail.com', 35, 'F', '456 Elm Street, City'),
+(413, 'Naveen goud', 7201, '8567890123', 'goudnaveen87@gmail.com', 40, 'M', '789 Oak Street, City'),
+(414, 'Lavanya kumari', 9078, '7890123456', 'lavanya91@gmail.com', 28, 'F', '321 Maple Avenue, City'),
+(415, 'Michael raj', 4562, '6345678901', 'michaelraj@gmail.com', 32, 'M', '567 Pine Road, City'),
+(416, 'Anjali', 7645, '8901234567', 'anjali@gmail.com', 42, 'F', '901 Cedar Lane, City'),
+(417, 'Daraneesh', 9082, '7456789012', 'daraneesh672@gmail.com', 36, 'M', '234 Birch Street, City'),
+(418, 'Yogitha', 1237, '6789012345', 'yogitha85@gmail.com', 29, 'F', '567 Walnut Drive, City'),
+(419, 'Charan Kumar', 3490, '9123456789', 'charan12kumar@gmail.com', 38, 'M', '890 Oak Avenue, City'),
+(4010, 'Sophia ', 3410, '9567890123', 'sophia89@gmail.com', 31, 'F', '123 Elm Road, City'),
+(4011, 'Lokesh kumar', 9089, '7890123456', 'lokeshkumar12@gmail.com', 33, 'M', '456 Pine Street, City'),
+(4012, 'Trisha kumar', 1236, '8345678901', 'trishakumar@gmail.com', 27, 'F', '789 Cedar Avenue, City'),
+(4013, 'Vishnu vardhan', 4571, '8901234567', 'vishnuvardhan67@gmail.com', 44, 'M', '321 Maple Lane, City'),
+(4014, 'Emma Watson', 7212, '9456789012', 'emmawatson12@gmail.com', 30, 'F', '654 Oak Road, City'),
+(4015, 'Manoj goud', 5063, '6789012345', 'goudmanoj87@gmail.com', 37, 'M', '987 Birch Drive, City'),
+(4016, 'Navya naidu', 9083, '9123456789', 'navyanaidu@gmail.com', 39, 'F', '123 Walnut Street, City'),
+(4017, 'Avinash singh', 3491, '8567890123', 'avinash09@gmail.com', 28, 'M', '456 Cedar Road, City'),
+(4018, 'Sailaja', 6123, '7890123456', 'sailajakmsani45@gmail.com', 34, 'F', '789 Elm Lane, City'),
+(4019, 'Gowtam naidu', 9618, '9345678901', 'gowtham74@gmail.com', 41, 'M', '321 Pine Avenue, City'),
+(4021, 'Vamsi Priya', 5341, '9456789012', 'vamsi23priya@gmail.com', 33, 'F', '567 Cedar Street, City'),
+(4022, 'Abhishek', 4290, '6789012345', 'abhishek091@gmail.com', 29, 'M', '901 Elm Road, City'),
+(4023, 'Madhumitha', 9445, '8123456789', 'madhumitha812@gmail.com', 36, 'F', '234 Pine Avenue, City'),
+(4024, 'Sai kumar', 4898, '8567890123', 'saikumar45@gmail.com', 31, 'M', '567 Oak Lane, City'),
+(4025, 'Lakshmi priya', 9848, '7890123456', 'priya12-lakshmi@gmail.com', 39, 'F', '890 Maple Street, City'),
+(4026, 'Shusanth', 5407, '9345678901', 'sushanthraj65@gmailcom', 27, 'M', '123 Birch Road, City'),
+(4027, 'Siddarth', 4563, '8901234567', 'siddarthdaniel@gmail.com', 42, 'M', '456 Walnut Drive, City'),
+(4028, 'Keerthana', 4564, '9456789012', 'keerthanalily@gmail.com', 35, 'F', '789 Cedar Avenue, City'),
+(4029, 'Anwar', 4565, '6789012345', 'anwar643@gmail.com', 30, 'M', '901 Pine Street, City'),
+(4030, 'Deekshita', 4566, '7123456789', 'sofideekshi98@gmail.com', 37, 'F', '234 Elm Lane, City'),
+(4031, 'Shaffi Shaik', 4567, '6567890123', 'shaikshaffi564@gmail.com', 38, 'M', '567 Cedar Road, City'),
+(4032, 'Vandana', 4568, '7890123456', 'vandanagrace76@gmail.com', 26, 'F', '890 Oak Avenue, City'),
+(4033, 'Sai Krishna', 4569, '9345678901', 'saikrishna124@gmail.com', 43, 'M', '123 Pine Road, City'),
+(4034, 'Jaya Prasanna', 4570, '8901234567', 'jayaprasanna98@gmail.com', 32, 'F', '456 Maple Drive, City'),
+(4035, 'Raj Vardhan', 4571, '9456789012', 'raj67vardhan@gmail.com', 28, 'M', '789 Birch Street, City');
+select * from Coordinator;
+
+create table Volunteers
+(
+ Volunteer_id int primary key,
+ Volunteer_name varchar(30) not null,
+ Email varchar(50) not null,
+ Vol_mobile varchar(10) not null,
+ Vol_address varchar(20) not null,
+ Vol_age int not null check(Vol_age<=60),
+ Vol_gender char(1) not null check(Vol_gender='F' or Vol_gender='M'),
+)
+insert into Volunteers values(801,'Mahesh','mahesh234@gmail.com',9495732412,'Chagalmarri',24,'M');
+insert into Volunteers values(8023,'Dinesh','dinesh201@gmail.com',6495342567,'Chennai',30,'M');
+insert into Volunteers values(8345,'Himabindu','himabindu@gmail.com',9491923456,'Maharastra',41,'F');
+insert into Volunteers values(8902,'Himanshu','himanshu@gmail.com',9177944170,'Mumbai',31,'F');
+insert into Volunteers values(804,'Bhumi','bhumi876@gmail.com',9440532851,'Vizag',50,'M');
+insert into Volunteers values(890,'Tanuja','tanujagangula@gmail.com',9441082605,'Hyderabad',25,'F');
+insert into Volunteers values(832,'Nandu','nandu09@gmail.com',9867540741,'Vijayawada',45,'M');
+insert into Volunteers values(8876,'Aishu','aishu65@gmail.com',8978083378,'Mumbai',21,'F');
+insert into Volunteers values(854,'Manisha','manisha@gmail.com',9390621251,'Andhrapradesh',28,'F');
+insert into Volunteers values(861,'Nandini','nandini@gmail.com',9818999740,'Arunachalpradesh',30,'F');
+insert into Volunteers values(829,'varshini','varshini@gmail.com',9573368712,'Tamilnadu',20,'F');
+insert into Volunteers values(8098,'Nani','naniaish@gmail.com',9618889739,'Andhrapradesh',28,'M');
+insert into Volunteers values(8347,'Manoj','manoj11@gmail.com',9876504321,'karnataka',25,'M');
+insert into Volunteers values(9121,'Sai','sai12345@gmail.com',9618123459,'ladakh',22,'M');
+insert into Volunteers values(8016,'Lohitha','lohitha@gmail.com',8642351799,'Nagpur',21,'F');
+insert into Volunteers values(891,'Meghana','meghana@gmail.com',9398747244,'kanchi',38,'F');
+insert into Volunteers values(834,'Maha','maha456@gmail.com',7418052963,'Vishakapatnam',30,'F');
+insert into Volunteers values(8978,'Tharun','tharun999@gmail.com',9069325121,'Tamilnadu',24,'M');
+insert into Volunteers values(206,'Pradeep','pradeep@gmail.com',9516238407,'kanchi',39,'M');
+insert into Volunteers values(212,'lakshmi','lakshmi22@gmail.com',7391056842,'karnataka',25,'F');
+insert into Volunteers values(227,'Jahnavi','jahnavi@gmail.com',9362581470,'Hyderabad',34,'F');
+insert into Volunteers values(239,'Karthik','karthik00@gmail.com',9136485270,'Mumbai',28,'M');
+insert into Volunteers values(242,'vennela','vennela89@gmail.com',9182734605,'Chennai',30,'F');
+insert into Volunteers values(250,'Vinod','vinod555@gmail.com',9555822631,'Banglore',32,'M');
+insert into Volunteers values(263,'Janaki','janaki123@gmail.com',9002233139,'Vizag',24,'F');
+insert into Volunteers values(9390,'Valli','valli33@gmail.com',9123456872,'Banglore',27,'F');
+insert into Volunteers values(9499,'Varun','varun@gmail.com',8760549123,'Nagpur',36,'M'); 
+insert into Volunteers values(1006,'Vamsi','vamsidhar34@gmail.com',9845549873,'Banglore',40,'M'); 
+insert into Volunteers values(1007,'Avinash','avinashkumar90@gmail.com',9876549453,'Chennai',26,'M'); 
+insert into Volunteers values(1008,'Sandya','sandya12@gmail.com',9540549121,'Chandigarh',37,'F'); 
+insert into Volunteers values(1009,'kailash','kailashnaidu@gmail.com',8102549894,'Karnataka',36,'M'); 
+select * from Volunteers;
+
+create table Volunteer_Training
+(
+  Training_id int primary key,
+  Volunteer_id int foreign key references Volunteers(Volunteer_id),
+  Training_name varchar(50) not null,
+  Training_date date not null,
+  Training_duration int not null,
+  Training_status varchar(50) not null,
+)
+insert into Volunteer_Training (Training_id, Volunteer_id, Training_name, Training_date, Training_duration, Training_status)
+values
+(10101, 801, 'First Aid Training', '2023-01-15', 3, 'Completed'),
+(10201, 8023, 'CPR Training', '2023-02-02', 2, 'Completed'),
+(10301, 8345, 'Fire Safety Training', '2023-02-10', 4, 'Completed'),
+(10401, 8902, 'Conflict Resolution Training', '2023-03-05', 2, 'Completed'),
+(10501, 804, 'Community Outreach Training', '2023-03-18', 3, 'In Progress'),
+(10601, 890, 'Child Protection Training', '2023-04-02', 4, 'In Progress'),
+(10701, 832, 'Disaster Preparedness Training', '2023-04-10', 2, 'Not Started'),
+(10801, 8876, 'Fundraising Training', '2023-05-01', 3, 'Not Started'),
+(10901, 854, 'Teamwork Training', '2023-05-15', 2, 'Not Started'),
+(11001, 861, 'Leadership Training', '2023-05-25', 4, 'Not Started'),
+(101102, 829, 'Public Speaking Training', '2023-06-03', 3, 'Not Started'),
+(101203, 8098, 'Mental Health First Aid Training', '2023-06-10', 2, 'Not Started'),
+(101302, 8347, 'Project Management Training', '2023-06-18', 4, 'Not Started'),
+(101402, 9121, 'Volunteer Management Training', '2023-07-01', 2, 'Not Started'),
+(101502, 8016, 'Communication Skills Training', '2023-07-10', 3, 'Not Started'),
+(101602, 891, 'Event Planning Training', '2023-07-15', 4, 'Not Started'),
+(101702, 834, 'Data Analysis Training', '2023-07-25', 2, 'Not Started'),
+(101802, 8978, 'Community Development Training', '2023-08-05', 3, 'Not Started'),
+(101902, 206, 'Grant Writing Training', '2023-08-12', 2, 'Not Started'),
+(102002, 212, 'Diversity and Inclusion Training', '2023-08-20', 4, 'Not Started'),
+(102103, 227, 'Time Management Training', '2023-09-01', 3, 'Not Started'),
+(102203, 239, 'Social Media Marketing Training', '2023-09-10', 2, 'Not Started'),
+(102303, 242, 'Budgeting and Financial Management Training', '2023-09-18', 4, 'Not Started'),
+(102403, 250, 'Volunteer Recruitment and Retention Training', '2023-10-01', 2, 'Not Started'),
+(102503, 263, 'Strategic Planning Training', '2023-10-10', 3, 'Not Started'),
+(102603, 9390, 'Advocacy and Lobbying Training', '2023-10-15', 4, 'Not Started'),
+(102703, 9499, 'Project Evaluation and Impact Assessment Training','2023-09-27',4,'Not Started'),
+(104603, 1006, 'Stress Management Training', '2024-05-05', 4, 'Not Started'),
+(104703, 1007, 'Effective Communication in Teams Training', '2024-05-15', 2, 'Not Started'),
+(104803, 1008, 'Digital Marketing Training', '2024-05-25', 3, 'Not Started'),
+(104903, 1009, 'Fundamental Human Rights Training', '2024-06-05', 4, 'Not Started');
+select * from  Volunteer_Training;
+
+create table Volunteer_hours
+(
+   Volunteer_id int foreign key references Volunteers(Volunteer_id),
+   Project_id int not null foreign key references Project(Project_id),
+   Hours_worked int not null,
+   Date_worked date not null,
+   Approval_status varchar(20) not null,
+   Hours_type varchar(30) not null,
+)
+
+insert into Volunteer_hours values(801, 5011, 10, '2023-05-01', 'Approved', 'Direct Service');
+insert into Volunteer_hours values(8023,6121, 20, '2023-05-02', 'Pending',  'Fundraising');
+insert into Volunteer_hours values(8345,7201, 30, '2023-05-03', 'Denied',   'Administration');
+insert into Volunteer_hours values(8902,9078, 40, '2023-05-04', 'Approved', 'Direct Service');
+insert into Volunteer_hours values(804, 4562, 50, '2023-05-05', 'Pending',  'Fundraising');
+insert into Volunteer_hours values(890, 7645, 60, '2023-05-06', 'Denied',   'Administration');
+insert into Volunteer_hours values(832, 9082, 70, '2023-05-07', 'Approved', 'Direct Service');
+insert into Volunteer_hours values(8876,1237, 80, '2023-05-08', 'Pending',  'Fundraising');
+insert into Volunteer_hours values(854, 3490, 90, '2023-05-09', 'Denied',   'Administration');
+insert into Volunteer_hours values(861, 3410, 10 ,'2023-05-10', 'Approved', 'Direct Service');
+insert into Volunteer_hours values(829, 9089, 10, '2023-05-11', 'Pending',  'Fundraising');
+insert into Volunteer_hours values(8098,1236, 20, '2023-05-12', 'Denied',   'Administration');
+insert into Volunteer_hours values(8347,4571, 30, '2023-05-13', 'Approved', 'Direct Service');
+insert into Volunteer_hours values(9121,7212, 40, '2023-05-14', 'Pending',  'Fundraising');
+insert into Volunteer_hours values(8016,5063, 50, '2023-05-15', 'Denied',   'Administration');
+insert into Volunteer_hours values(891, 9083, 60, '2023-05-16', 'Approved', 'Direct Service');
+insert into Volunteer_hours values(834, 3491, 10, '2023-05-17', 'Pending',  'Fundraising');
+insert into Volunteer_hours values(8978,6123, 10, '2023-05-18', 'Denied',   'Administration');
+insert into Volunteer_hours values(754, 9618, 10, '2023-05-19', 'Approved', 'Direct Service');
+insert into Volunteer_hours values(206, 5341, 20, '2023-05-20', 'Pending',  'Fundraising');
+insert into Volunteer_hours values(212, 4290, 21, '2023-05-21', 'Denied',   'Administration');
+insert into Volunteer_hours values(227, 9491, 22, '2023-05-22', 'Approved', 'Direct Service');
+insert into Volunteer_hours values(239, 9445, 23, '2023-05-23', 'Pending',  'Fundraising');
+insert into Volunteer_hours values(242, 4898, 24, '2023-05-24', 'Denied',   'Administration');
+insert into Volunteer_hours values(250, 9848, 25, '2023-05-25', 'Approved', 'Direct Service');
+insert into Volunteer_hours values(263, 5407, 26, '2023-05-26', 'Pending',  'Fundraising');
+select * from Volunteer_hours;
+
+create table Volunteer_Assignment
+( 
+  Assignment_id int primary key,
+  Volunteer_id int not null foreign key references Volunteers(Volunteer_id),
+  Assignment_date date not null,
+  Status varchar(20) not null check(Status='In progress' or Status='Not yet started' or Status='Finished'),
+)
+insert into Volunteer_Assignment (Assignment_id, Volunteer_id, Assignment_date, Status)
+values
+(1, 801, '2023-01-15', 'In progress'),
+(2, 8023, '2023-02-10', 'Not yet started'),
+(3, 8345, '2023-03-05', 'Finished'),
+(4, 8902, '2023-04-20', 'In progress'),
+(5, 804, '2023-05-02', 'Not yet started'),
+(6, 890, '2023-06-12', 'In progress'),
+(7, 832, '2023-07-25', 'Finished'),
+(8, 8876, '2023-08-14', 'Not yet started'),
+(9, 854, '2023-09-18', 'In progress'),
+(10, 861, '2023-10-30', 'Not yet started'),
+(11, 829, '2023-11-21', 'In progress'),
+(12, 8098, '2023-12-05', 'Finished'),
+(13, 8347, '2024-01-08', 'Not yet started'),
+(14, 9121, '2024-02-15', 'In progress'),
+(15, 8016, '2024-03-22', 'Finished'),
+(16, 891, '2024-04-10', 'Not yet started'),
+(17, 834, '2024-05-18', 'In progress'),
+(18, 8978, '2024-06-25', 'Finished'),
+(19, 206, '2024-07-09', 'Not yet started'),
+(20, 212, '2024-08-20', 'In progress'),
+(21, 227, '2024-09-05', 'Finished'),
+(22, 239, '2024-10-12', 'Not yet started'),
+(23, 242, '2024-11-18', 'In progress'),
+(24, 250, '2024-12-22', 'Finished'),
+(25, 263, '2025-01-15', 'Not yet started'),
+(26, 9390, '2025-02-28', 'In progress'),
+(27, 9499, '2025-03-10', 'Finished'),
+(28, 1006, '2025-04-20', 'Not yet started'),
+(29, 1007, '2025-05-05', 'In progress'),
+(30, 1008, '2025-06-18', 'Finished');
+select * from Volunteer_Assignment;
+
+create table Campaign
+(
+  Campaign_id   int        primary key,
+  Campaign_name varchar(200) not null,
+  Start_date  date not null,
+  End_date   date not null,
+  Goal_amount money not null,
+  Description text not null,
+)
+
+insert into Campaign (Campaign_id, Campaign_name, Start_date, End_date, Goal_amount, Description)
+values
+(7011, 'Education for All',         '2023-01-01', '2023-02-28', 50000, 'Help us provide education to underprivileged children.'),
+(7012, 'Clean Water Initiative',    '2023-03-15', '2023-05-31', 100000, 'Support our efforts to provide clean and safe drinking water.'),
+(7013, 'Food Drive for the Needy',  '2023-06-01', '2023-07-31', 75000, 'Join us in feeding hungry individuals and families.'),
+(7014, 'Healthcare Access Campaign', '2023-08-15', '2023-10-31', 120000, 'Help us improve access to healthcare services for marginalized communities.'),
+(7015, 'Environmental Conservation', '2023-11-01', '2024-01-31', 80000, 'Join our efforts to protect and preserve the environment.'),
+(7016, 'Support for Elderly Care',   '2024-02-15', '2024-04-30', 60000, 'Provide assistance and care to the elderly population.'),
+(7017, 'Disaster Relief Fund',       '2024-05-01', '2024-06-30', 90000, 'Help us provide immediate relief to those affected by natural disasters.'),
+(7018, 'Women Empowerment Project',  '2024-07-01', '2024-09-30', 150000, 'Support initiatives that empower and uplift women.'),
+(7019, 'Youth Development Program',  '2024-10-01', '2024-12-31', 100000, 'Invest in the development and well-being of young individuals.'),
+(7110, 'Animal Welfare Campaign',    '2025-01-01', '2025-03-31', 70000, 'Join us in advocating for the welfare and protection of animals.'),
+(7111, 'Community Infrastructure Project', '2025-04-01', '2025-06-30', 120000, 'Support the construction of essential infrastructure in disadvantaged communities.'),
+(7112, 'Poverty Alleviation Initiative', '2025-07-01', '2025-09-30', 80000, 'Work towards reducing poverty and improving livelihoods.'),
+(7113, 'Cancer Research Fund', '2025-10-01', '2025-12-31', 200000, 'Contribute to cancer research and support patients and their families.'),
+(7114, 'Arts and Culture Preservation', '2026-01-01', '2026-03-31', 90000, 'Preserve and promote the arts and cultural heritage.'),
+(7115, 'Community Sports Development', '2026-04-01', '2026-06-30', 75000, 'Promote sports participation and development in the community.'),
+(7116, 'Literacy and Book Drive', '2026-07-01', '2026-09-30', 50000, 'Support literacy programs and provide books to those in need.'),
+(7117, 'Refugee Assistance Project', '2026-10-01', '2026-12-31', 150000, 'Assist and support refugees in rebuilding their lives.'),
+(7118, 'Rural Development Initiative', '2027-01-01', '2027-03-31', 100000, 'Promote sustainable development in rural areas.'),
+(7119, 'Empowering People with Disabilities', '2027-04-01', '2027-06-30', 80000, 'Support initiatives that empower individuals with disabilities.'),
+(7220, 'Community Mental Health Program', '2027-07-01', '2027-09-30', 120000, 'Promote mental health awareness and provide support services.'),
+(7221, 'Humanitarian Aid for Refugees', '2027-10-01', '2027-12-31', 150000, 'Provide essential aid and support to refugees in crisis.'),
+(7222, 'Clean Energy and Sustainability Project', '2028-01-01', '2028-03-31', 200000, 'Promote clean energy adoption and sustainable practices.'),
+(7223, 'Education Scholarships for Underprivileged Students', '2028-04-01', '2028-06-30', 100000, 'Provide educational opportunities for disadvantaged students.'),
+(7224, 'Promoting Gender Equality and Womens Rights', '2028-07-01', '2028-09-30', 90000, 'Support initiatives that promote gender equality and empower women.'),
+(7225, 'Youth Mentorship and Leadership Program', '2028-10-01', '2028-12-31', 80000, 'Provide guidance and mentorship to young individuals.'),
+(7226, 'Community Garden and Urban Farming Project', '2029-01-01', '2029-03-31', 60000, 'Promote sustainable agriculture and food security in urban areas.'),
+(7227, 'Disaster Risk Reduction and Preparedness', '2029-04-01', '2029-06-30', 100000, 'Enhance community resilience through disaster risk reduction measures.'),
+(7228, 'Promoting Accessible Healthcare Services', '2029-07-01', '2029-09-30', 120000, 'Improve access to quality healthcare for underserved populations.'),
+(7229, 'Environmental Education and Awareness Campaign', '2029-10-01', '2029-12-31', 70000, 'Educate and raise awareness about environmental conservation and sustainability.'),
+(7230, 'Support for Orphaned and Vulnerable Children', '2030-01-01', '2030-03-31', 150000, 'Provide care, support, and opportunities for orphaned and vulnerable children.'),
+(7331, 'Promoting Fair Trade and Ethical Business Practices', '2030-04-01', '2030-06-30', 90000, 'Support fair trade initiatives and ethical business practices.'),
+(7332, 'Community Disaster Response Training', '2030-07-01', '2030-09-30', 80000, 'Equip communities with skills and knowledge to respond to disasters effectively.'),
+(7333, 'Access to Clean Sanitation and Hygiene', '2030-10-01', '2030-12-31', 100000, 'Improve access to clean sanitation facilities and promote hygiene practices.');
+select * from Campaign;
+
+create table Benificiary
+(
+  Benificiary_id int primary key,
+  First_name varchar(10) not null,
+  Last_name  varchar(20) not null,
+  Email_id  varchar(50)  not null,
+  Contact_no varchar(10) not null,
+  Assistance_required  text not null,
+)
+insert into Benificiary values(6213,'AL','Sandya','alsandya567@gmail.com','9876543210','Food Aid')
+insert into Benificiary values(7890,'Valmiki','Raju','rajuvalmiki@gmail.com','997733551','Shelter assistance')
+insert into Benificiary values(6091,'Gongati','Pratyusha','gongatipratyusha7@gmail.com','9959161422','Medical Supplies')
+insert into Benificiary values(9023,'Patima','Geeta','geeta12patima@gmail.com','8309224411','Education Support')
+insert into Benificiary values(7834,'Pasupuleti','Vasu','vasupasupuleti76@gmail.com','8978719332','Financial Aid')
+insert into Benificiary values(2034,'Boyapati','Manogna','boyapatimanogna04@gmail.com','7989135167','Medical Support')
+insert into Benificiary values(6541,'Thalapti','Deva','devatalapati@gmail.com','9948270311','Financial Aid')
+insert into Benificiary values(7613,'Merlapudi','Ambika','ambikaloknathan@gmail.com','9390376820','Educational Support')
+insert into Benificiary values(6542,'Mary','Amelia','amelia222@gmail.com','8765432109','Medical assistance')
+insert into Benificiary values(6543,'John','Oliver','oliver333@gmail.com','7654321098','Transportation assistance')
+insert into Benificiary values(6544,'Elizabeth','Olivia','olivia444@gmail.com','6543210987','Community outreach support Aid')
+insert into Benificiary values(6545,'William','Jack','jack555@gmail.com','5432109876','Job placement assistance')
+insert into Benificiary values(6546,'Sarah','Isla','isla666@gmail.com','4321098765','Substance abuse counseling')
+insert into Benificiary values(6547,'Thomas','Harry','harry777@gmail.com','3210987654','Home repair assistance')
+insert into Benificiary values(6548,'Margaret','Emily','emily888@gmail.com','2109876543','Vocational training assistance')
+insert into Benificiary values(6549,'George','Jacob','jacob999@gmail.com','1098765432','Disaster relief assistance')
+insert into Benificiary values(6550,'Ann','Poppy','poppy000@gmail.com','9988776655','Senior citizen support')
+insert into Benificiary values(6551,'James','Charlie','charlie123@gmail.com','8877665544','Scholarship assistance')
+insert into Benificiary values(6552,'Jane','Ava','ava456@gmail.com','7766554433','Mental health assistance')
+insert into Benificiary values(6553,'Robert','Thomas','thomas789@gmail.com','6655443322','Job training assistance')
+insert into Benificiary values(6554,'Alice','Isabella','isabella12@gmail.com','5544332211','Childcare assistance')
+insert into Benificiary values(6555,'Charles','George','george23@gmail.com','4433221100','Utility bill assistance')
+insert into Benificiary values(6556,'Ellen','Jessica','jessica4@gmail.com','3322110099','Educational assistance')
+insert into Benificiary values(6557,'Henry','Oscar','oscar45@gmail.com','2211009988','Food assistance')
+insert into Benificiary values(6558,'Annie','Lily','lily567@gmail.com','1100998877','Employment assistance')
+insert into Benificiary values(6559,'Joseph','James','james78@gmail.com','9998887776','Legal assistance')
+insert into Benificiary values(6560,'Florence','Sophie','sophie89@gmail.com','8887776665','Counseling assistance')
+insert into Benificiary values(6531,'David','William','william90@gmail.com','7776665554','Healthcare support')
+insert into Benificiary values(6562,'Emma','Grace','grace32@gmail.com','6665554443','Emergency shelter')
+insert into Benificiary values(6563,'Richard','Noah','noah987@gmail.com','5554443332','Food bank assistance')
+insert into Benificiary values(6564,'Edith','Sophia','sophia213@gmail.com','4443332221','Job skills training')
+select * from Benificiary;
+
+create table Expenses
+(
+  Expense_id int primary key,
+  Project_id int not null foreign key references Project(project_id),
+  Expense_date date not null,
+  Amount money not null,
+  Description varchar(200) not null,  
+)
+insert into Expenses (Expense_id, Project_id, Expense_date, Amount, Description)
+values
+(7031, 5011, '2023-05-22', 100000, 'Food related expenses'),
+(7542, 6121, '2023-05-23', 260006, 'Distributing books for the needy'),
+(3463, 7201, '2023-05-24', 390430, 'Cloth Supplies'),
+(9064, 9078, '2023-05-25', 45000, 'Education Purpose'),
+(5675, 4562, '2023-05-26', 78000, 'Health Care'),
+(9876, 7645, '2023-05-27', 64218, 'Food Security'),
+(6517, 9082, '2023-05-28', 985430, 'Empowerment Workshop'),
+(4328, 1237, '2023-05-29', 78650, 'Elderly care services'),
+(9059, 3490, '2023-05-30', 782309, 'Disaster relief efforts'),
+(7810, 3410, '2023-05-31', 432786, 'Environmental insurance'),
+(7811, 9089, '2023-01-15', 15000, 'Office supplies'),
+(7812, 1236, '2023-02-20', 25000, 'Medical equipment'),
+(7813, 4571, '2023-03-10', 10000, 'Environmental awareness campaign materials'),
+(7814, 7212, '2023-04-05', 18000, 'Community event expenses'),
+(7815, 5063, '2023-05-12', 30000, 'Youth training program resources'),
+(7816, 9083, '2023-06-18', 12000, 'Elderly care supplies'),
+(7817, 3491, '2023-07-25', 20500, 'Workshop materials for women empowerment'),
+(8018, 6123, '2023-08-30', 28000, 'Emergency relief supplies'),
+(8019, 9618, '2023-09-07', 90000, 'Animal shelter expenses'),
+(8010, 5341, '2023-10-12', 35000, 'Educational materials'),
+(8111, 4290, '2023-11-20', 23000, 'Medical camp expenses'),
+(8112, 9491, '2023-12-08', 34000, 'Nature preservation equipment'),
+(8113, 9445, '2024-01-03', 26000, 'Community garden development'),
+(8314, 4898, '2024-02-18', 28000, 'Youth mentorship program expenses'),
+(8315, 9848, '2024-03-22', 11050, 'Assisted living supplies'),
+(8316, 5407, '2024-04-29', 28000, 'Women entrepreneurship workshop expenses'),
+(8317, 4563, '2024-05-15', 25000, 'Disaster response supplies'),
+(8318, 4564, '2024-06-05', 70000, 'Animal vaccination costs'),
+(8319, 4565, '2024-07-10', 120000, 'Educational field trip expenses'),
+(8320, 4566, '2024-08-28', 41000, 'Health awareness campaign materials');
+select * from Expenses;
+
+create table Feedback
+(
+  Feedback_id int primary key,
+  Volunteer_id int  not null foreign key references Volunteers(Volunteer_id),
+  Project_id int not null foreign key references Project(Project_id),
+  Rating int not null check(Rating>=1 and Rating<=5),
+  Feedback_date date not null,
+  Feedback_text text not null,
+)
+  insert into Feedback values(9011, 801, 5011, 4,'2022-09-24', 'Great project! I enjoyed volunteering.');
+  insert into Feedback values(7822, 8023,6121,5,'2023-08-11', 'The project made a significant impact. Well organized.');
+  insert into Feedback values(3413, 8345,7201,3,'2022-12-09', 'Decent project, but could have had better coordination.');
+  insert into Feedback values(6784, 8902,9078,5,'2023-01-23', 'Excellent experience! The team was very supportive.');
+  insert into Feedback values(3455, 804, 4562,2,'2023-04-30', 'Disappointed with the project outcome. Lack of resources.');
+  insert into Feedback values(7806, 890, 7645, 4,'2022-12-06', 'Good initiative, but needs better communication.');
+  insert into Feedback values(4517, 832, 9082, 5,'2023-09-15', 'One of the best projects I have volunteered for!');
+  insert into Feedback values(8718, 8876,1237, 4,'2022-11-17', 'The project had a positive impact on the community.');
+  insert into Feedback values(8909, 854, 3490, 3,'2023-08-27', 'Average project. Could have used more volunteers.');
+  insert into Feedback values(4510, 861, 8023, 5,'2022-12-12', 'Incredible project! Proud to be a part of it.');
+  insert into Feedback values(3091, 829, 3410, 4,'2023-01-15', 'The project was well-organized and impactful.');
+  insert into Feedback values(3092, 8098,9089, 5,'2023-02-20', 'I had a great experience working on this project. Highly recommended!');
+  insert into Feedback values(3093, 8347,1236, 3,'2023-03-10', 'There were some areas for improvement, but overall it was a good effort.');
+  insert into Feedback values(3094, 9121,4571, 5,'2023-04-05', 'I loved being part of this community event. It brought people together.');
+  insert into Feedback values(3095, 8016,7212, 4,'2023-05-12', 'The youth training program was informative and engaging.');
+  insert into Feedback values(3196, 891, 5063, 2,'2023-06-18', 'I had expected more resources for the elderly care services.');
+  insert into Feedback values(3197, 834, 9083, 5,'2023-07-25', 'The women empowerment workshop was inspiring. Thank you!');
+  insert into Feedback values(3198, 8978,3491, 4,'2023-08-30', 'The emergency relief project made a significant impact during the crisis.');
+  insert into Feedback values(3199, 206, 6123, 3,'2023-09-07', 'The animal welfare campaign could have reached more people.');
+  insert into Feedback values(3210, 212, 9618, 4,'2023-10-12', 'The educational materials provided were helpful for the students.');
+  insert into Feedback values(3211, 227, 5341, 5,'2023-11-20', 'The medical camp was well-organized and served the community effectively.');
+  insert into Feedback values(3212, 239, 4290, 3,'2023-12-08', 'The nature preservation equipment helped us carry out our work efficiently.');
+  insert into Feedback values(3213, 242, 9491, 4,'2024-01-03', 'The community garden project created a positive impact in our neighborhood.');
+  insert into Feedback values(3214, 250, 9445, 5,'2024-02-18', 'The youth mentorship program has been a transformative experience for the participants.');
+  insert into Feedback values(3215, 263, 4898, 2,'2024-03-22', 'I feel there is a need for better resources for assisted living facilities.');
+  insert into Feedback values(3216, 9390,9848, 5,'2024-04-29', 'The women entrepreneurship workshop opened up new opportunities for aspiring entrepreneurs.');
+  insert into Feedback values(3217, 9499,5407, 4,'2024-05-15', 'The disaster response supplies were promptly distributed and greatly appreciated.');
+  insert into Feedback values(3218, 1006,4563, 3,'2024-06-05', 'The animal vaccination costs were necessary to ensure the health of the animals.');
+  insert into Feedback values(3219, 1007,4564, 4,'2024-07-10', 'The educational field trip provided a hands-on learning experience for the students.');
+  insert into Feedback values(3220, 1008,4565, 5,'2024-08-28', 'The health awareness campaign materials effectively raised awareness in the community.');
+  select * from Feedback;
+
+  create table Event
+(
+  Event_id int primary key,
+  Event_name varchar(70) not null,
+  Event_description varchar(200) not null,
+  Event_date date not null,
+  Location varchar(100) not  null,
+)
+insert into Event values(4090,'Charity gala','Annual fundrising gala event','2023-04-12','Grand Hall')
+insert into Event values(5230,'Volunteer Fair','Recruitment and awareness event','2022-12-30','Community Centre')
+insert into Event values(5640,'Walk for a cause','Fundrising walkathon','2022-06-22','Central Park')
+insert into Event values(6543,'Benifit Concert','Music concert for a cause','2023-01-06','City Stadium')
+insert into Event values(8764,'Food Drive','Collecting food donations for the needy','2023-02-08','Community Centre')
+insert into Event values(5643,'Annual Charity Auction','Fundraising auction of donated items','2022-11-27','Convention Center')
+insert into Event values(6521,'Health Awareness Workshop','Educational workshop on health topics','2023-05-05','Community Hospital')
+insert into Event values(6754,'Youth Mentorship Program', 'Guidance and mentorship for youth', '2023-09-25', 'Youth Center')
+insert into Event values(2346,'Environmental Cleanup', 'Community cleanup initiative', '2023-11-20', 'Local Park')
+insert into Event values(5433,'Holiday Toy Drive', 'Collecting toys for underprivileged children', '2023-12-10', 'Community Center')
+insert into Event values(5564,'Charity Bike Ride', 'Cycling event to raise funds for charity', '2023-10-12', 'City Park')
+insert into Event values(3421,'Fundraising Dinner', 'Gala dinner to support charitable causes', '2023-09-18', 'Luxury Hotel')
+insert into Event values(4326,'Art Exhibition', 'Showcasing artworks for a charitable cause', '2023-10-08', 'Art Gallery')
+insert into Event values(7654,'Educational Scholarship Program', 'Awarding scholarships to deserving students', '2023-11-30', 'Community Center')
+insert into Event values(7895,'Homeless Shelter Volunteer Day', 'Volunteer service at local homeless shelter', '2023-09-28', 'Shelter Facility')
+insert into Event values(4578,'Community Health Fair', 'Promoting health and wellness in the community', '2023-10-15', 'Community Park')
+insert into Event values(7532,'Fundraising Marathon', 'Running event to raise funds for charity', '2023-11-12', 'City Streets')
+insert into Event values(2345,'Youth Sports Camp', 'Sports and recreation program for youth', '2023-09-22', 'Sports Complex')
+insert into Event values(7896,'Fundraising Car Wash', 'Washing cars to support charitable causes', '2023-10-01', 'Parking Lot')
+insert into Event values(3428,'Charity Concert', 'Musical performance for a noble cause', '2023-11-08', 'Concert Hall')
+insert into Event values(6427,'Women Empowerment Workshop', 'Empowering women through education and skills', '2023-09-20', 'Community Center')
+insert into Event values(8765,'Disaster Relief Fundraiser', 'Fundraising event for disaster-stricken areas', '2023-11-25', 'Community Hall')
+insert into Event values(5634,'Charity Fashion Show', 'Fashion show to support charitable causes', '2023-10-17', 'Fashion Mall')
+insert into Event values(9854,'Community Gardening Day', 'Volunteer gardening event in the community', '2023-11-02', 'Local Park')
+insert into Event values(3985,'Fundraising Comedy Night', 'Stand-up comedy show for charity fundraising', '2023-09-27', 'Comedy Club')
+insert into Event values(7612,'Blood Donation Drive', 'Collecting blood donations for medical purposes', '2023-10-24', 'Community Center')
+insert into Event values (6720,'Cultural Festival', 'Celebration of diverse cultures and traditions', '2023-11-10', 'City Square') 
+insert into Event values(8763,'Charity Art Auction', 'Auctioning artwork to support charitable organizations', '2023-10-19', 'Art Gallery')
+insert into Event values(9120,'Community Book Drive', 'Collecting books for libraries and educational institutions', '2023-11-07', 'Community Center')
+insert into Event values(4518,'Charity Marathon', 'Running event to raise funds for a charitable cause', '2023-10-30', 'City Streets')
+insert into Event values(7206,'Community Clean-up Day', 'Volunteer-driven initiative to clean up the local community', '2023-11-16', 'Neighborhood Park')
+select * from Event;
+
+
